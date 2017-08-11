@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170810</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>文本申明</h1>
+<hr>
+<div id="app">
+    <div>
+        <h4>{{}}、v-text、v-html</h4>
+        <p>{{message1}}</p>
+        <hr>
+        <p v-text="message2"></p>
+        <hr>
+        <div v-html="message3"></div>
+    </div>
+
+</div>
+
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message1:'双花括号输出内容',
+            message2:'v-text输出的内容，避免了双花括号网速慢带来的bug',
+            message3:'<p>v-html输出的内容为html元素，<b>你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 XSS 攻击。' +
+            '请只对可信内容使用 HTML 插值，绝不要对用户提供的内容插值</b></p>'
+        }
+    })
+</script>
+</body>
+</html>
