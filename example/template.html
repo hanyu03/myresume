@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170912</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>template</h1>
+<p>template在构造器里的三种写法</p>
+<hr>
+<div id="app1">
+
+</div>
+<div id="app2">
+    <template id="demo2">
+        <h3>2.html的template标签里的模板</h3>
+    </template>
+</div>
+<div id="app3">
+
+</div>
+<script type="x-template" id="demo3">
+    <h3>3.在script里的模板  //script的type=x-template</h3>
+</script>
+<script>
+    var app1 = new Vue({
+        el:'#app1',
+        data:{
+
+        },
+        template: `<h3>1.在template选项里的模板   //如果模板html代码太多，不建议这么写</h3>`
+    });
+    var app2 = new Vue({
+        el:'#app2',
+        data:{
+
+        },
+        template:"#demo2"
+    });
+    var app3 = new Vue({
+        el:'#app3',
+        data:{
+
+        },
+        template:"#demo3"
+    });
+</script>
+</body>
+</html>

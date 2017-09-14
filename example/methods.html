@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170912</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>methods Option</h1>
+<p>注意，不应该使用箭头函数来定义 method 函数 (例如 plus: () => this.a++)。
+    理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.a 将是 undefined。</p>
+<hr>
+<div id="app">
+    <p>{{a}}</p>
+    <button @click="add(2)">ADD</button>
+    <p>
+        <btn @click.native="add(1)"></btn>
+    </p>
+</div>
+<button onclick="app.add(3)">app作用域外引用</button>
+<script>
+    Vue.component('btn',{
+        template:`<button>组件ADD</button>`
+    });
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            a:1
+        },
+        methods:{
+            add:function (num) {
+                this.a+=num
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170913</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>watch Option</h1>
+<p>一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。
+    Vue 实例将会在实例化时调用 $watch()，遍历 watch 对象的每一个属性。</p>
+<hr>
+<div id="app">
+    <div style="margin-bottom: 20px;background-color: yellowgreen">
+        <p>今日温度：{{temperature}}℃</p>
+        <p>穿衣建议：{{suggestion}}</p>
+        <p>
+            <button @click="add">温度上升</button>
+            <button @click="reduce">温度下降</button>
+        </p>
+    </div>
+    <div>
+        <h3>此部分是使用computed选项完成的</h3>
+        <p>今日温度：{{newTemperature}}℃</p>
+        <p>穿衣建议：{{currentSuggestion}}</p>
+        <p>
+            <button @click="add">温度上升</button>
+            <button @click="reduce">温度下降</button>
+        </p>
+    </div>
+
+</div>
+<script>
+    var suggestion=['T恤短袖','夹克长裙','棉衣羽绒服'];
+    var app = new Vue({
+        el:'#app',
+        data:{
+            temperature:20,
+            suggestion:'夹克长裙',
+            suggestionArr:['T恤短袖','夹克长裙','棉衣羽绒服']
+        },
+        methods:{
+            add:function () {
+                this.temperature += 3;
+//                this.newTemperature = 20     //set方法讲被调用
+            },
+            reduce:function () {
+                this.temperature -= 3
+            }
+        },
+        computed:{
+            newTemperature:{
+                get:function () {
+                    return this.temperature
+                },
+                set:function (v) {
+                   this.temperature = v-5
+                }
+            },
+            currentSuggestion:function () {
+                if(this.newTemperature>=26){
+                    return this.suggestionArr[0]
+                }else if(5<this.newTemperature && this.newTemperature <26){
+                    return this.suggestionArr[1]
+                }else{
+                    return this.suggestionArr[2]
+                }
+            }
+        }
+//        watch:{
+//            temperature:function (newV,oldV) {
+//                if(newV>=26){
+//                    this.suggestion = suggestion[0]
+//                }else if(5<newV && newV<26){
+//                    this.suggestion = suggestion[1]
+//                }else{
+//                    this.suggestion = suggestion[2]
+//                }
+//            }
+//        }
+    });
+    app.$watch('temperature',function (newV,oldV) {
+        if(newV>=26){
+            this.suggestion = suggestion[0]
+        }else if(5<newV && newV<26){
+            this.suggestion = suggestion[1]
+        }else{
+            this.suggestion = suggestion[2]
+        }
+    })
+</script>
+</body>
+</html>

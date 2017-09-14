@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170911</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>vue.set</h1>
+<p><span  style="color:red;">为什么要有Vue.set的存在?</span><br>
+    由于Javascript的限制，Vue不能自动检测以下变动的数组。
+    *当你利用索引直接设置一个项时，vue不会为我们自动更新。
+    *当你修改数组的长度时，vue不会为我们自动更新。
+</p>
+<p>vue.set全局操作</p>
+<p>设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，
+    同时触发视图更新。这个方法主要用于避开 Vue 不能检测属性被添加的限制。</p>
+<hr>
+<div id="app">
+    <p>{{count}}</p>
+    <ul>
+        <li v-for="item in arr">{{item}}</li>
+    </ul>
+</div>
+<button onclick="add()">ADD</button>
+
+<script>
+    function add() {
+//  方法1       Vue.set(outData,'count',4)
+//  方法2      app.count++
+//  方法3
+//            outData.count++
+//        app.arr[1] = 'ddd'
+        Vue.set(app.arr,1,'dedede')
+    }
+    var outData={
+        count:3,
+//        goods:'cars',
+        arr:['aaa','bbb','ccc']
+    }
+    var app = new Vue({
+        el:'#app',
+        data:outData,
+
+    })
+</script>
+</body>
+</html>

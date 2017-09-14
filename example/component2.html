@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170912</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>component-2</h1>
+<p>component props属性</p>
+<hr>
+<div id="app">
+    <panda here="china" v-bind:message=message></panda>
+</div>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello'
+        },
+        components:{
+            "panda":{
+                template:`<div style="color:mediumvioletred;">我是局部注册的组件panda,来自{{here}}。这是v-bind绑定的message的值--{{message}}</div>`,
+                props:['here','message']
+            }
+        }
+    });
+</script>
+</body>
+</html>

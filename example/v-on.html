@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170809</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-on</h1>
+<hr>
+<div id="app">
+    本场比赛得分: {{count1}}<br>
+    <button v-on:click="add">加分</button>
+    <button @click="plus">减分</button>
+    <input type="text" v-on:keyup.enter="onEnter" v-model="count2">
+</div>
+
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            count1:0,
+            count2:''
+        },
+        methods:{
+            add:function(){
+                this.count1++
+            },
+            plus:function(){
+                this.count1++
+            },
+            onEnter:function () {
+                this.count1 = this.count1 + parseInt(this.count2)
+            }
+        }
+    })
+</script>
+</body>
+</html>

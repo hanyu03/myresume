@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170912</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>component-1</h1>
+<p>component 注册组件</p>
+<hr>
+<div id="app">
+    <h3>全局注册</h3>
+    <p>其他的vue作用域内也可以使用</p>
+    <jsp :mess="message"></jsp>
+    <panda></panda>
+</div>
+<div id="app1">
+    <h4>作用域app1</h4>
+    <jsp></jsp>
+</div>
+<script>
+    Vue.component('jsp',{
+        template:`<div style="color:red;">我是全局注册的组件jsp  {{mess}}</div>`,
+        props:['mess']
+    })
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello'
+        },
+        components:{
+            "panda":{
+                template:`<div style="color:greenyellow;">我是局部注册的组件panda</div>`
+            }
+        }
+    });
+    var app1= new Vue({
+        el:'#app1'
+    })
+</script>
+</body>
+</html>

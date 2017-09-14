@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170912</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>mixins</h1>
+<p>混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。
+    以组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。</p>
+<hr>
+<div id="app">
+    <p>{{numb}}</p>
+    <p>
+        <button @click="add">ADD</button>
+    </p>
+</div>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            numb:1
+        },
+        methods:{
+            add:function () {
+                this.numb++
+            }
+        }
+    });
+</script>
+</body>
+</html>

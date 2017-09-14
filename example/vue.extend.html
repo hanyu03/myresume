@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170911</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>vue.extend</h1>
+<p>vue.extend扩展实例构造器</p>
+<hr>
+
+<jspang></jspang>
+<br>
+<div id="jsp"></div>
+<script>
+    var jspangExtend = Vue.extend({
+        template:'<a :href="authorUrl">{{authorName}}</a>',
+        data:function(){
+            return {
+                authorName:'jsPang',
+                authorUrl:'http://www.jspang.com'
+            }
+        }
+    });
+    new jspangExtend().$mount('jspang');
+    new jspangExtend().$mount('#jsp');
+</script>
+</body>
+</html>
