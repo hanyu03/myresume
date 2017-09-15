@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170912</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>extends && delimiters</h1>
+<p>允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数)，而无需使用 Vue.extend。这主要是为了便于扩展单文件组件。</p>
+<p>这和 mixins 类似，区别在于，<em style="color:red;">组件自身的选项会比要扩展的源组件具有更高的优先级</em></p>
+<hr>
+<div id="app">
+    <p>#{numb}</p>
+    <p>
+        <button @click="add">ADD</button>
+    </p>
+    <button @click="bbb">extends和自身都有的bbb</button>
+</div>
+<script>
+    var addExtends = {
+        updated:function () {
+            alert("updated来自extends")
+        },
+        methods:{
+            bbb:function () {
+                alert("来自扩展")
+            }
+        }
+    };
+    var app = new Vue({
+        el:'#app',
+        data:{
+            numb:1
+        },
+        methods:{
+            add:function () {
+                this.numb++
+            },
+            bbb:function () {
+                alert("来自self,扩展的不调用")
+            }
+        },
+        updated(){
+          alert("updated来自self")
+        },
+        extends:addExtends,
+        delimiters:['#{','}']
+    });
+</script>
+</body>
+</html>
+
+
+<div class="mian">
+    <div class="scroll">滚动</div>
+</div>
+
+<footer></footer>

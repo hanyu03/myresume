@@ -16,8 +16,34 @@
     <p>
         <button @click="add">ADD</button>
     </p>
+    <h4>mixins  选项合并有两种情况：</h4>
+    <ol>
+        <li>
+            <p>当组件和混合对象含有同名选项时，这些选项将以恰当的方式混合。
+                比如，同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的钩子将在组件自身钩子之前调用</p>
+        </li>
+        <li>
+            <p>值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。
+                两个对象键名冲突时，<em style="color:red;">取组件对象的键值对</em>。</p>
+        </li>
+    </ol>
+    <button @click="add">mixins1</button>
+    <br>
+    <button @click="aaa">mixins2</button>
 </div>
 <script>
+    var addMixin = {
+        updated:function () {
+            alert("来自混入mixin")
+        }
+    };
+    var mixins2 = {
+        methods: {
+            aaa:function () {
+                alert("from mixins2.aaa")
+            }
+        }
+    }
     var app = new Vue({
         el:'#app',
         data:{
@@ -26,8 +52,15 @@
         methods:{
             add:function () {
                 this.numb++
+            },
+            aaa:function () {
+                alert("from self.aaa,不会执行mixins2.aaa")
             }
-        }
+        },
+        updated(){
+            alert("构造器里的updated方法，混合对象的钩子将在组件自身钩子之前调用 ")
+        },
+        mixins:[addMixin,mixins2]
     });
 </script>
 </body>
