@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170915</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>实例属性</h1>
+<hr>
+<div id="app">
+    <p>{{a}}</p>
+    <button @click="add(2)">ADD</button>
+    <p>
+        <btn @click.native="add(1)"></btn>
+    </p>
+</div>
+<button onclick="app.add(3)">app作用域外引用</button>
+<script>
+    Vue.component('btn',{
+        template:`<button>组件ADD</button>`
+    });
+
+    var app = new Vue({
+        el:'#app',
+        data:{
+            a:1
+        },
+        methods:{
+            add:function (num) {
+                this.a+=num
+            }
+        }
+    })
+</script>
+</body>
+</html>
