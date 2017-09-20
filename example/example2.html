@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HelloWorld-20170915</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>实例方法</h1>
+<hr>
+<div id="app">
+</div>
+<button onclick="destroy()">销毁</button>
+<button onclick="fresh()">重新渲染</button>
+<button onclick="tick()">数据更改</button>
+<script>
+    var extend1 = Vue.extend({
+        template:`<p>{{message}}</p>`,
+        data: function(){
+            return {
+                message:'我是扩展的信息'
+            }
+        },
+        mounted:function(){
+            alert("被创建")
+        },
+        destroyed:function(){
+            alert("销毁之后")
+        },
+        updated:function () {
+            alert("信息更新")
+        }
+    });
+    var vm = new extend1().$mount("#app");
+
+    function destroy(){
+        vm.$destroy();
+    };
+    function fresh() {
+        vm.$forceUpdate();
+    };
+    function tick() {
+        vm.message = "updata message info";
+        vm.$nextTick(function () {
+            alert("$nextTick,数据更改了")
+        })
+    }
+</script>
+</body>
+</html>
